@@ -1,0 +1,54 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+
+interface Props {
+  titulo: string;
+  resumo: string;
+  tipo: 'seletividade-tipica' | 'condicao-medica';
+  fontes: string[];
+}
+
+const { titulo, resumo, tipo, fontes } = Astro.props;
+
+// Rótulo visual que deixa clara a jornada (seletividade típica x condição médica)
+const rotulo = tipo === 'condicao-medica' ? 'Condição médica' : 'Seletividade típica';
+const corRotulo = tipo === 'condicao-medica' ? '#a34e4e' : '#3a6b52';
+---
+<BaseLayout titulo={titulo} descricao={resumo}>
+  <span class="tag" style={`background:${corRotulo}`}>{rotulo}</span>
+  <h1>{titulo}</h1>
+
+  <Disclaimer />
+
+  <article>
+    <slot />
+  </article>
+
+  {fontes.length > 0 && (
+    <section class="fontes">
+      <h3>Fontes</h3>
+      <ul>
+        {fontes.map((fonte) => <li>{fonte}</li>)}
+      </ul>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .tag {
+    display: inline-block;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+  .fontes {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #666;
+  }
+</style>

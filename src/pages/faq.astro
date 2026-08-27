@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const perguntas = [
+  {
+    pergunta: 'Meu filho é "seletivo" ou isso pode ser algo médico?',
+    resposta:
+      'Seletividade alimentar típica costuma ser uma fase do desenvolvimento e melhora com estratégias consistentes. Já quando há perda de peso, engasgos frequentes, recusa extrema de grupos alimentares inteiros ou sinais de desconforto físico, vale investigar com um profissional. Veja a página "Quando buscar ajuda profissional" para mais detalhes.',
+  },
+  {
+    pergunta: 'Este site substitui uma consulta com nutricionista?',
+    resposta:
+      'Não. O conteúdo aqui é informativo e serve como apoio e acolhimento, mas não substitui avaliação individual com nutricionista, fonoaudiólogo(a) ou médico(a).',
+  },
+  {
+    pergunta: 'Por que vocês evitam palavras como "fominha" ou "mimado"?',
+    resposta:
+      'Porque essas palavras carregam julgamento e não refletem o que realmente acontece: questões sensoriais, motoras ou médicas que estão fora do controle da criança e dos pais.',
+  },
+];
+---
+<BaseLayout titulo="Perguntas frequentes">
+  <h1>Perguntas frequentes</h1>
+
+  <div class="faq">
+    {perguntas.map((item) => (
+      <details>
+        <summary>{item.pergunta}</summary>
+        <p>{item.resposta}</p>
+      </details>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .faq {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  details {
+    padding: 1rem 1.25rem;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: white;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #3a6b52;
+  }
+  details p {
+    margin: 0.75rem 0 0;
+    color: #444;
+  }
+</style>

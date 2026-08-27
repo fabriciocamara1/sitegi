@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const termos = await getCollection('glossario');
+const ordenados = termos.sort((a, b) => a.data.termo.localeCompare(b.data.termo, 'pt-BR'));
+---
+<BaseLayout titulo="Glossário">
+  <h1>Glossário</h1>
+  <p>Termos técnicos explicados de forma simples.</p>
+
+  <dl class="glossario">
+    {ordenados.map((t) => (
+      <div class="termo">
+        <dt>{t.data.termo}</dt>
+        <dd>{t.data.definicaoCurta}</dd>
+      </div>
+    ))}
+  </dl>
+</BaseLayout>
+
+<style>
+  .glossario {
+    margin-top: 1.5rem;
+  }
+  .termo {
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  dt {
+    font-weight: 600;
+    color: #3a6b52;
+  }
+  dd {
+    margin: 0.3rem 0 0;
+    color: #444;
+  }
+</style>

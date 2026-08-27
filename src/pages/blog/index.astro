@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const artigos = await getCollection('artigos');
+const ordenados = artigos.sort(
+  (a, b) => b.data.dataPublicacao.valueOf() - a.data.dataPublicacao.valueOf()
+);
+---
+<BaseLayout titulo="Artigos">
+  <h1>Artigos</h1>
+  <div class="lista">
+    {ordenados.map((artigo) => (
+      <a class="item" href={`/blog/${artigo.slug}`}>
+        <span class="categoria">{artigo.data.categoria}</span>
+        <h2>{artigo.data.titulo}</h2>
+        <p>{artigo.data.resumo}</p>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .item {
+    text-decoration: none;
+    color: inherit;
+    padding: 1.25rem;
+    border: 1px solid #eee;
+    border-radius: 10px;
+  }
+  .item:hover {
+    border-color: #3a6b52;
+  }
+  .categoria {
+    font-size: 0.75rem;
+    color: #3a6b52;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .item p {
+    color: #555;
+    margin-bottom: 0;
+  }
+</style>

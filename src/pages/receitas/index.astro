@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const receitas = await getCollection('receitas');
+
+// Serializa só o necessário pro filtro client-side (evita mandar HTML inteiro pro JS)
+const dadosParaFiltro = receitas.map((r) => ({
+  slug: r.slug,
+  titulo: r.data.titulo,
+  descricao: r.data.descricao,
+  textura: r.data.textura,
+  alergias: r.data.alergias,
+  idadeMinMeses: r.data.idadeMinMeses,
+  tempoPreparoMinutos: r.data.tempoPreparoMinutos,
+}));
+---
+<BaseLayout titulo="Receitas">
+  <h1>Receitas</h1>
+
+  <div class="filtros">
+    <label>
+      Textura
+      <select id="filtro-textura">
+        <option value="">Todas</option>
+        <option value="liquida">Líquida</option>
+        <option value="pastosa">Pastosa</option>
+        <option value="picada-fina">Picada fina</option>
+        <option value="picada-grossa">Picada grossa</option>
+        <option value="solidos">Sólidos</option>
+      </select>
+    </label>
+
+    <label>
+      Sem alergênico
+      <select id="filtro-alergia">
+        <option value="">Qualquer</option>
+        <option value="leite">Leite</option>
+        <option value="ovo">Ovo</option>
+        <option value="gluten">Glúten</option>
+        <option value="soja">Soja</option>
+        <option value="amendoim">Amendoim</option>
+        <option value="castanhas">Castanhas</option>
+        <option value="peixe">Peixe</option>
+      </select>
+    </label>
+
+    <label>
+      Idade mínima (meses)
+      <input type="number" id="filtro-idade" min="0" placeholder="ex: 8" />
+    </label>
+
+    <label>
+      Tempo máx. de preparo (min)
+      <input type="number" id="filtro-tempo" min="0" placeholder="ex: 30" />
+    </label>
+  </div>
+
+  <div id="lista-receitas" class="grid"></div>
+
+  <p id="sem-resultados" hidden>Nenhuma receita encontrada com esses filtros.</p>
+</BaseLayout>
+
+<script define:vars={{ dadosParaFiltro }}>
+  const receitas = dadosParaFiltro;
+  const grid = document.getElementById('lista-receitas');
+  const semResultados = document.getElementById('sem-resultados');
+
+  const filtroTextura = document.getElementById('filtro-textura');
+  const filtroAlergia = document.getElementById('filtro-alergia');
+  const filtroIdade = document.getElementById('filtro-idade');
+  const filtroTempo = document.getElementById('filtro-tempo');
+
+  function renderizar() {
+    const textura = filtroTextura.value;
+    const alergiaExcluir = filtroAlergia.value;
+    const idadeMin = filtroIdade.value ? Number(filtroIdade.value) : null;
+    const tempoMax = filtroTempo.value ? Number(filtroTempo.value) : null;
+
+    const filtradas = receitas.filter((r) => {
+      if (textura && r.textura !== textura) return false;
+      if (alergiaExcluir && r.alergias.includes(alergiaExcluir)) return false;
+      if (idadeMin !== null && r.idadeMinMeses > idadeMin) return false;
+      if (tempoMax !== null && r.tempoPreparoMinutos > tempoMax) return false;
+      return true;
+    });
+
+    grid.innerHTML = filtradas
+      .map(
+        (r) => `
+      <a class="card" href="/receitas/${r.slug}">
+        <h3>${r.titulo}</h3>
+        <p>${r.descricao}</p>
+        <div class="meta">
+          <span>${r.textura}</span>
+          <span>${r.idadeMinMeses}+ meses</span>
+          <span>${r.tempoPreparoMinutos} min</span>
+        </div>
+      </a>
+    `
+      )
+      .join('');
+
+    semResultados.hidden = filtradas.length > 0;
+  }
+
+  [filtroTextura, filtroAlergia, filtroIdade, filtroTempo].forEach((el) =>
+    el.addEventListener('input', renderizar)
+  );
+
+  renderizar();
+</script>
+
+<style>
+  .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 10px;
+  }
+  .filtros label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    gap: 0.3rem;
+    color: #444;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    display: block;
+    padding: 1.25rem;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card:hover {
+    border-color: #3a6b52;
+  }
+  .meta {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    font-size: 0.75rem;
+    color: #3a6b52;
+  }
+</style>
