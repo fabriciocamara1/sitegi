@@ -1,0 +1,3 @@
+# Arquivos que não devem ser publicados como assets estáticos pelo Cloudflare
+_worker.js
+_routes.json
