@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../images/logo.png';
+
+
 const links = [
   { href: '/', label: 'Início' },
   { href: '/blog', label: 'Artigos' },
@@ -11,7 +15,7 @@ const links = [
 <header class="site-header">
   <nav>
     <a href="/" class="logo">
-      <img src="/src/images/logo.png" alt="" />
+        <Image src={logo} alt="Giselle Câmara Nutricionista" width={140} height={40} />
     </a>
     <ul>
       {links.map((link) => (
@@ -34,10 +38,13 @@ const links = [
     margin: 0 auto;
   }
   .logo {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #3a6b52;
+    display: flex;
+    align-items: center;
     text-decoration: none;
+  }
+    .logo img {
+    height: 40px;
+    width: auto;
   }
   ul {
     display: flex;
