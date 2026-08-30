@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import fotoPrincipal from '../images/quem-sou-eu-principal.jpg';
+import fotoProfissional from '../images/quem-sou-eu-profissional.jpg';
+import fotoFamilia from '../images/quem-sou-eu-familia.jpg';
+---
+<BaseLayout titulo="Quem sou eu" descricao="Conheça um pouco da história por trás do site.">
+  <h1>Quem sou eu</h1>
+
+  <div class="conteudo">
+    <div class="foto-principal">
+      <Image src={fotoPrincipal} alt="Foto de perfil" width={320} height={320} />
+    </div>
+
+    <div class="texto">
+      <p>
+        Escreva aqui sua apresentação: quem é você, sua formação, sua experiência
+        e por que decidiu criar este espaço para falar sobre nutrição infantil e
+        dificuldades alimentares.
+      </p>
+      <p>
+        Pode incluir também um pouco da sua motivação pessoal — muitas famílias se
+        conectam melhor quando entendem a história por trás do conteúdo.
+      </p>
+    </div>
+  </div>
+
+  <div class="galeria-secundaria">
+    <figure>
+      <Image src={fotoProfissional} alt="Atuando como nutricionista em atendimento" width={400} height={300} />
+      <figcaption>Em atendimento — cuidando de perto de cada história.</figcaption>
+    </figure>
+
+    <figure>
+      <Image src={fotoFamilia} alt="Com a família" width={400} height={300} />
+      <figcaption>Com a minha família, que também inspira este trabalho.</figcaption>
+    </figure>
+  </div>
+</BaseLayout>
+
+<style>
+  .conteudo {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .foto-principal {
+    flex-shrink: 0;
+  }
+  .foto-principal :global(img) {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #eee;
+  }
+  .texto {
+    flex: 1;
+    min-width: 260px;
+  }
+  .texto p {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .galeria-secundaria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .galeria-secundaria figure {
+    margin: 0;
+  }
+  .galeria-secundaria :global(img) {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .galeria-secundaria figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+  }
+</style>
