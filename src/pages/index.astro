@@ -1,14 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import fotoinicial from '../images/img_principal.png';
 ---
 <BaseLayout titulo="Início">
   <section class="hero">
     <h1>Você não está sozinho(a)</h1>
+    <div class="foto-principal">
+      <Image src={fotoinicial} alt="Foto Inicial" width={320} height={320} />
+    </div>
     <p>
-      Se a hora da refeição virou motivo de ansiedade na sua casa, saiba: isso não é
-      falta de esforço seu. Aqui você encontra acolhimento, informação clara e
-      orientação prática — seja o desafio uma seletividade típica do desenvolvimento
-      ou uma condição médica específica.
+      Preocupação com a alimentação dos nossos filhos é aquele fantasma que ronda a nossa rotina...
+Certo ou errado?
+E precisa ser assim? Não!
+O que falta?
+Uma boa orientação, confiança no processo, segurança na condução, e apoio nas dificuldades.
+
+Como conseguir isso?
+Agendando uma consulta 😉
+
+Não tem pó de Pirlimpimpim que resolva, não tem receita de bolo que dê certo pra todo mundo. Nesse caso não tem.
+
+O segredo é a escuta de cada família e buscar juntos solução para o prejuízo alimentar apresentado pela criança. Oferecendo suporte, apoio, e todas as intervenções nutricionais necessárias até atingir o objetivo e a tão esperada alta.
+
+Vamos juntos? ❤️🥰💪
+
     </p>
   </section>
 
@@ -70,5 +86,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     color: #555;
     font-size: 0.9rem;
     margin-bottom: 0;
+  }
+  .foto-principal :global(img) {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #eee;
   }
 </style>
