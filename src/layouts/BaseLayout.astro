@@ -15,7 +15,13 @@ const { titulo, descricao = 'Acolhimento e orientação sobre nutrição infanti
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={descricao} />
-    <title>{titulo} | Nome do Site</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <title>{titulo} | Giselle Câmara Nutricionista</title>
   </head>
   <body>
     <Header />
@@ -28,14 +34,30 @@ const { titulo, descricao = 'Acolhimento e orientação sobre nutrição infanti
 
 <style is:global>
   :root {
-    --cor-principal: #3a6b52;
+    /* Paleta extraída da logo */
+    --cor-verde-escuro: #4a933d;
+    --cor-verde: #6eab48;
+    --cor-verde-claro: #88b243;
+    --cor-rosa: #ef688d;
+    --cor-rosa-escuro: #e7617b;
+    --cor-coral: #e05b41;
+
+    /* Uso semântico */
+    --cor-principal: var(--cor-verde-escuro);
+    --cor-secundaria: var(--cor-rosa);
+    --cor-acento: var(--cor-coral);
     --cor-fundo: #fffdf9;
-    --cor-texto: #2b2b2b;
+    --cor-texto: #333333;
+
+    /* Fontes */
+    --fonte-titulo: 'Baloo 2', system-ui, sans-serif;
+    --fonte-destaque: 'Pacifico', cursive;
+    --fonte-corpo: 'Nunito Sans', system-ui, sans-serif;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: var(--fonte-corpo);
     background: var(--cor-fundo);
     color: var(--cor-texto);
     line-height: 1.6;
@@ -46,6 +68,7 @@ const { titulo, descricao = 'Acolhimento e orientação sobre nutrição infanti
     padding: 2rem;
   }
   h1, h2, h3 {
+    font-family: var(--fonte-titulo);
     color: var(--cor-principal);
   }
 </style>

@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import fotoinicial from '../images/img_principal.png';
+---
+<BaseLayout titulo="Início">
+  <section class="hero">
+    <h1>Você não está sozinho(a)</h1>
+    <div class="hero-content">
+      <div class="foto-principal">
+        <Image src={fotoinicial} alt="Foto Inicial" width={320} height={320} />
+      </div>
+      <p>
+      Preocupação com a alimentação dos nossos filhos é aquele fantasma que ronda a nossa rotina...
+Certo ou errado?
+E precisa ser assim? Não!
+O que falta?
+Uma boa orientação, confiança no processo, segurança na condução, e apoio nas dificuldades.
+      </p>
+      <p>
+Como conseguir isso?
+Agendando uma consulta 😉
+      </p>
+      <p>
+Não tem pó de Pirlimpimpim que resolva, não tem receita de bolo que dê certo pra todo mundo. Nesse caso não tem.
+      </p>
+      <p>
+O segredo é a escuta de cada família e buscar juntos solução para o prejuízo alimentar apresentado pela criança. Oferecendo suporte, apoio, e todas as intervenções nutricionais necessárias até atingir o objetivo e a tão esperada alta.
+      </p>
+      <p>
+Vamos juntos? ❤️🥰💪
+
+      </p>
+    </div>
+  </section>
+
+  <section class="caminhos">
+    <h2>Por onde você quer começar?</h2>
+    <div class="cards">
+      <a class="card" href="/blog?tipo=seletividade-tipica">
+        <h3>Seletividade alimentar típica</h3>
+        <p>Aversão sensorial, recusa de texturas, fases do desenvolvimento.</p>
+      </a>
+      <a class="card" href="/blog?tipo=condicao-medica">
+        <h3>Condições médicas</h3>
+        <p>Disfagia, refluxo, alergias, TEA, paralisia cerebral e outras.</p>
+      </a>
+      <a class="card" href="/receitas">
+        <h3>Receitas adaptadas</h3>
+        <p>Filtre por textura, alergia, idade e tempo de preparo.</p>
+      </a>
+      <a class="card" href="/quando-buscar-ajuda">
+        <h3>Quando buscar ajuda profissional</h3>
+        <p>Sinais de alerta e como este site complementa o acompanhamento clínico.</p>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 2rem 0 3rem;
+  }
+  .hero h1 {
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .hero p {
+    margin: 1rem 0 0;
+  }
+  .foto-principal {
+    float: left;
+    margin: 0 1.5rem 1rem 0;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .card {
+    display: block;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid #eee;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover {
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+  .card h3 {
+    margin-top: 0;
+  }
+  .card p {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+  .foto-principal :global(img) {
+    width: 170px;
+    height: 220px;
+    object-fit: cover;
+    border: 3px solid #eee;
+  }
+  .hero-content::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+</style>
