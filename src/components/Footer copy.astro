@@ -1,0 +1,80 @@
+---
+const ano = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="conteudo">
+    <div class="bloco">
+      <h3>Atendimento e consultas</h3>
+      <p>Endereço do consultório aqui</p>
+      <p>Telefone / WhatsApp: (00) 00000-0000</p>
+      <p>contato@giselecamaranutricionista.com.br</p>
+    </div>
+    <div class="bloco">
+      <h3>Navegação</h3>
+      <ul>
+        <li><a href="/quem-sou-eu">Quem sou eu</a></li>
+        <li><a href="/blog">Artigos</a></li>
+        <li><a href="/receitas">Receitas</a></li>
+        <li><a href="/faq">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; {ano} Giselle Câmara Nutricionista — Conteúdo informativo sobre nutrição infantil.</p>
+    <p class="footer-note">Este site não substitui acompanhamento profissional individualizado.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 4rem;
+    background: var(--cor-verde-escuro);
+    color: white;
+  }
+  .conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  .bloco h3 {
+    font-family: var(--fonte-titulo);
+    color: white;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  .bloco p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  .bloco ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .bloco li {
+    margin-bottom: 0.4rem;
+  }
+  .bloco a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  .bloco a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  .copyright {
+    text-align: center;
+    padding: 1.25rem;
+    font-size: 0.8rem;
+    background: rgba(0,0,0,0.15);
+  }
+  .copyright p {
+    margin: 0.2rem 0;
+  }
+</style>

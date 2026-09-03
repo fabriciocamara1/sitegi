@@ -1,23 +1,57 @@
 ---
 import { getCollection } from 'astro:content';
-import ArtigoLayout from '../../layouts/ArtigoLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Disclaimer from '../../components/Disclaimer.astro';
 
 export async function getStaticPaths() {
-  const artigos = await getCollection('artigos');
-  return artigos.map((artigo) => ({
-    params: { slug: artigo.slug },
-    props: { artigo },
+  const receitas = await getCollection('receitas');
+  return receitas.map((receita) => ({
+    params: { slug: receita.slug },
+    props: { receita },
   }));
 }
 
-const { artigo } = Astro.props;
-const { Content } = await artigo.render();
+const { receita } = Astro.props;
+const { Content } = await receita.render();
+const d = receita.data;
 ---
-<ArtigoLayout
-  titulo={artigo.data.titulo}
-  resumo={artigo.data.resumo}
-  tipo={artigo.data.tipo}
-  fontes={artigo.data.fontes}
->
-  <Content />
-</ArtigoLayout>
+<BaseLayout titulo={d.titulo} descricao={d.descricao}>
+  <h1>{d.titulo}</h1>
+  <p class="descricao">{d.descricao}</p>
+
+  <ul class="info">
+    <li><strong>Textura:</strong> {d.textura}</li>
+    <li><strong>Idade mínima:</strong> {d.idadeMinMeses} meses</li>
+    <li><strong>Tempo de preparo:</strong> {d.tempoPreparoMinutos} min</li>
+    {d.porcoes && <li><strong>Porções:</strong> {d.porcoes}</li>}
+    {d.alergias.length > 0 && <li><strong>Contém:</strong> {d.alergias.join(', ')}</li>}
+    {d.adaptadaPara.length > 0 && <li><strong>Adaptada para:</strong> {d.adaptadaPara.join(', ')}</li>}
+  </ul>
+
+  <Disclaimer />
+
+  <article>
+    <Content />
+  </article>
+</BaseLayout>
+
+<style>
+  .descricao {
+    color: #555;
+  }
+  .info {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .info strong {
+    color: var(--cor-verde-escuro);
+  }
+</style>

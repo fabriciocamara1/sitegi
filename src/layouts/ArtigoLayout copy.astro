@@ -11,11 +11,12 @@ interface Props {
 
 const { titulo, resumo, tipo, fontes } = Astro.props;
 
+// Rótulo visual que deixa clara a jornada (seletividade típica x condição médica)
 const rotulo = tipo === 'condicao-medica' ? 'Condição médica' : 'Seletividade típica';
-const classeCor = tipo === 'condicao-medica' ? 'tag-coral' : 'tag-verde';
+const corRotulo = tipo === 'condicao-medica' ? '#a34e4e' : '#3a6b52';
 ---
 <BaseLayout titulo={titulo} descricao={resumo}>
-  <span class={`tag ${classeCor}`}>{rotulo}</span>
+  <span class="tag" style={`background:${corRotulo}`}>{rotulo}</span>
   <h1>{titulo}</h1>
 
   <Disclaimer />
@@ -39,16 +40,9 @@ const classeCor = tipo === 'condicao-medica' ? 'tag-coral' : 'tag-verde';
     display: inline-block;
     color: white;
     font-size: 0.75rem;
-    font-weight: 700;
     padding: 0.25rem 0.7rem;
     border-radius: 999px;
     margin-bottom: 0.75rem;
-  }
-  .tag-verde { background: var(--cor-verde); }
-  .tag-coral { background: var(--cor-coral); }
-
-  article {
-    font-size: 1.02rem;
   }
   .fontes {
     margin-top: 3rem;

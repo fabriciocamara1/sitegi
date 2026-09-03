@@ -7,7 +7,7 @@ const ordenados = termos.sort((a, b) => a.data.termo.localeCompare(b.data.termo,
 ---
 <BaseLayout titulo="Glossário">
   <h1>Glossário</h1>
-  <p class="intro">Termos técnicos explicados de forma simples.</p>
+  <p>Termos técnicos explicados de forma simples.</p>
 
   <dl class="glossario">
     {ordenados.map((t) => (
@@ -20,27 +20,16 @@ const ordenados = termos.sort((a, b) => a.data.termo.localeCompare(b.data.termo,
 </BaseLayout>
 
 <style>
-  .intro {
-    color: #555;
-  }
   .glossario {
     margin-top: 1.5rem;
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 14px;
-    padding: 0.5rem 1.5rem;
   }
   .termo {
     padding: 1rem 0;
     border-bottom: 1px solid #eee;
   }
-  .termo:last-child {
-    border-bottom: none;
-  }
   dt {
-    font-weight: 700;
-    color: var(--cor-verde-escuro);
-    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    color: #3a6b52;
   }
   dd {
     margin: 0.3rem 0 0;
