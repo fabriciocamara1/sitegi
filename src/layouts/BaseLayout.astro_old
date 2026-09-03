@@ -47,5 +47,6 @@ const { titulo, descricao = 'Acolhimento e orientação sobre nutrição infanti
   }
   h1, h2, h3 {
     color: var(--cor-principal);
+    text-align: center;
   }
 </style>
