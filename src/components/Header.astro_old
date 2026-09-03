@@ -16,7 +16,7 @@ const links = [
 <header class="site-header">
   <nav>
     <a href="/" class="logo">
-        <Image src={logo} alt="Giselle Câmara Nutricionista" width={140} height={40} />
+        <Image src={logo} alt="Giselle Câmara Nutricionista" width={140} height={120} />
     </a>
     <ul>
       {links.map((link) => (
@@ -44,7 +44,7 @@ const links = [
     text-decoration: none;
   }
     .logo img {
-    height: 110px;
+    height: 120px;
     width: auto;
   }
   ul {
