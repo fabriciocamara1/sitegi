@@ -6,26 +6,32 @@ import fotoinicial from '../images/img_principal.png';
 <BaseLayout titulo="Início">
   <section class="hero">
     <h1>Você não está sozinho(a)</h1>
-    <div class="foto-principal">
-      <Image src={fotoinicial} alt="Foto Inicial" width={320} height={320} />
-    </div>
-    <p>
+    <div class="hero-content">
+      <div class="foto-principal">
+        <Image src={fotoinicial} alt="Foto Inicial" width={320} height={320} />
+      </div>
+      <p>
       Preocupação com a alimentação dos nossos filhos é aquele fantasma que ronda a nossa rotina...
 Certo ou errado?
 E precisa ser assim? Não!
 O que falta?
 Uma boa orientação, confiança no processo, segurança na condução, e apoio nas dificuldades.
-
+      </p>
+      <p>
 Como conseguir isso?
 Agendando uma consulta 😉
-
+      </p>
+      <p>
 Não tem pó de Pirlimpimpim que resolva, não tem receita de bolo que dê certo pra todo mundo. Nesse caso não tem.
-
+      </p>
+      <p>
 O segredo é a escuta de cada família e buscar juntos solução para o prejuízo alimentar apresentado pela criança. Oferecendo suporte, apoio, e todas as intervenções nutricionais necessárias até atingir o objetivo e a tão esperada alta.
-
+      </p>
+      <p>
 Vamos juntos? ❤️🥰💪
 
-    </p>
+      </p>
+    </div>
   </section>
 
   <section class="caminhos">
@@ -53,12 +59,21 @@ Vamos juntos? ❤️🥰💪
 
 <style>
   .hero {
-    text-align: center;
     padding: 2rem 0 3rem;
   }
+  .hero h1 {
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 860px;
+    margin: 0 auto;
+  }
   .hero p {
-    max-width: 640px;
-    margin: 1rem auto 0;
+    margin: 1rem 0 0;
+  }
+  .foto-principal {
+    float: left;
+    margin: 0 1.5rem 1rem 0;
   }
   .cards {
     display: grid;
@@ -88,10 +103,14 @@ Vamos juntos? ❤️🥰💪
     margin-bottom: 0;
   }
   .foto-principal :global(img) {
-    width: 220px;
+    width: 170px;
     height: 220px;
     object-fit: cover;
-    border-radius: 50%;
     border: 3px solid #eee;
+  }
+  .hero-content::after {
+    content: '';
+    display: table;
+    clear: both;
   }
 </style>
