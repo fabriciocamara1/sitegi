@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import fotoinicial from '../images/img_principal.png';
 
 const artigos = (await getCollection('artigos'))
   .sort((a, b) => b.data.dataPublicacao.valueOf() - a.data.dataPublicacao.valueOf())
@@ -9,12 +11,32 @@ const artigos = (await getCollection('artigos'))
 <BaseLayout titulo="Início">
   <section class="hero">
     <h1>Você não está sozinho(a)</h1>
-    <p>
-      Se a hora da refeição virou motivo de ansiedade na sua casa, saiba: isso não é
-      falta de esforço seu. Aqui você encontra acolhimento, informação clara e
-      orientação prática — seja o desafio uma seletividade típica do desenvolvimento
-      ou uma condição médica específica.
-    </p>
+    <div class="hero-content">
+      <div class="foto-principal">
+        <Image src={fotoinicial} alt="Foto Inicial" width={320} height={320} />
+      </div>
+      <p>
+      Preocupação com a alimentação dos nossos filhos é aquele fantasma que ronda a nossa rotina...
+Certo ou errado?
+E precisa ser assim? Não!
+O que falta?
+Uma boa orientação, confiança no processo, segurança na condução, e apoio nas dificuldades.
+      </p>
+      <p>
+Como conseguir isso?
+Agendando uma consulta 😉
+      </p>
+      <p>
+Não tem pó de Pirlimpimpim que resolva, não tem receita de bolo que dê certo pra todo mundo. Nesse caso não tem.
+      </p>
+      <p>
+O segredo é a escuta de cada família e buscar juntos solução para o prejuízo alimentar apresentado pela criança. Oferecendo suporte, apoio, e todas as intervenções nutricionais necessárias até atingir o objetivo e a tão esperada alta.
+      </p>
+      <p>
+Vamos juntos? ❤️🥰💪
+
+      </p>
+    </div>
     <a class="botao" href="/quem-sou-eu">Saiba mais sobre mim</a>
   </section>
 
@@ -153,6 +175,12 @@ const artigos = (await getCollection('artigos'))
     text-transform: uppercase;
     letter-spacing: 0.03em;
     font-weight: 700;
+  }
+  .foto-principal :global(img) {
+    width: 170px;
+    height: 220px;
+    object-fit: cover;
+    border: 3px solid #eee;
   }
 
   .card-verde { border-top: 4px solid var(--cor-verde); }
